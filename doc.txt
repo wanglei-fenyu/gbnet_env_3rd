@@ -1,0 +1,22 @@
+boost:
+	window:
+		.\b2 --toolset=msvc --build-type=complete cxxstd=20 variant=release,debug threading=multi link=static,shared runtime-link=shared --prefix=D:\boost --debug-symbols=off -j4 define=BOOST_ALL_NO_LIB --debug-configuration install
+	linux:
+		./b2 --toolset=gcc  cxxstd=20 variant=release,debug threading=multi link=static,shared runtime-link=shared --prefix=/home/wl/workspace/boost  --debug-symbols=off -j4 define=BOOST_ALL_NO_LIB --debug-configuration install
+
+
+protobuf:
+	cmake ../cmake -DCMAKE_INSTALL_PREFIX=/home/wl/workspace/google-protobuf -Dprotobuf_BUILD_TESTS=OFF
+	cmake --build . --config Release --parallel $(nproc)
+	cmake --install .
+
+
+openssl:
+	linux:
+		cmake .. -DCMAKE_INSTALL_PREFIX=/home/wl/workspace/
+		cmake --build . --parallel $(nproc)
+		sudo cmake --install .
+	windows:
+		cmake ..  -DCMAKE_INSTALL_PREFIX="D:/work_space/gb_net_env/openssl" -DBUILD_SHARED_LIBS=ON
+		cmake --build . --config Release --parallel $(nproc)
+		cmake --install .
