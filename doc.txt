@@ -2,7 +2,20 @@ boost:
 	window:
 		.\b2 --toolset=msvc --build-type=complete cxxstd=20 variant=release,debug threading=multi link=static,shared runtime-link=shared --prefix=D:\boost --debug-symbols=off -j4 define=BOOST_ALL_NO_LIB --debug-configuration install
 	linux:
-		./b2 --toolset=gcc  cxxstd=20 variant=release,debug threading=multi link=static,shared runtime-link=shared --prefix=/home/wl/workspace/boost  --debug-symbols=off -j4 define=BOOST_ALL_NO_LIB --debug-configuration install
+		./b2 install \
+  			--prefix=/home/wl/workspace/boost \
+  			toolset=gcc \
+  			cxxstd=20 \
+  			variant=release,debug \
+  			threading=multi \
+  			link=static,shared \
+  			runtime-link=shared \
+  			define=BOOST_ALL_NO_LIB \
+  			--debug-symbols=off \
+  			--build-type=complete \
+  			--layout=versioned \
+  			--abbreviate-paths \
+  			-j4
 
 
 protobuf:
