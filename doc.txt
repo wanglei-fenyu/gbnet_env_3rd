@@ -1,6 +1,6 @@
 boost:
 	window:
-		.\b2 --toolset=msvc --build-type=complete cxxstd=20 variant=release,debug threading=multi link=static,shared runtime-link=shared --prefix=D:\boost --debug-symbols=off -j4 define=BOOST_ALL_NO_LIB --debug-configuration install
+		b2 install --prefix=D:\work_space\gb_net_env\boost toolset=msvc cxxstd=20 variant=release,debug threading=multi link=static,shared runtime-link=shared define=BOOST_ALL_NO_LIB --debug-symbols=off --build-type=complete --layout=versioned --abbreviate-paths -j%NUMBER_OF_PROCESSORS%
 	linux:
 		./b2 install \
   			--prefix=/home/wl/workspace/boost \
@@ -15,7 +15,7 @@ boost:
   			--build-type=complete \
   			--layout=versioned \
   			--abbreviate-paths \
-  			-j4
+  			-j$(nproc)
 
 
 protobuf:
